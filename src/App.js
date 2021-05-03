@@ -1,10 +1,12 @@
 import React, {useState} from 'react'
+import { Input, Button, List } from 'antd';
+import "antd/dist/antd.css";
 
 function App() {
   const [inputValue, setInputValue] = useState('')
   const [list, setList] = useState([])
   const handleInput = (e)=>{
-    setInputValue (e.target.value); 
+    setInputValue (e.target.value);
   }
   const handListChange = ()=>{
     setList([...list,inputValue])
@@ -16,19 +18,23 @@ function App() {
     setList([...newlist])
   }
   return (
-    <div>
-    <input value={inputValue} onChange= {handleInput} />
-    <button onClick={handListChange}>Submit</button>
-    <ul>
-      {
-        list.map((item, index)=> (<li key={item} onClick={()=>{handDelete(index)}}>{item}</li>))
-      }
-    </ul>
+    <div style={{marginLeft:'30px', marginTop:'30px'}}>
+    <Input
+      placeholder="Basic usage"
+      value={inputValue}
+      onChange= {handleInput}
+      style={{width:'300px', marginRight:'10px'}}
+    />
+    <Button type="primary" onClick={handListChange}>Submit now</Button>
+    <List
+      style={{width:'300px', marginTop:'10px'}}
+      size="small"
+      bordered
+      dataSource={list}
+      renderItem={(item,index)=><List.Item onClick={()=>{handDelete(index)}} >{item}</List.Item>}
+    />
     </div>
   );
-
-
-
 }
 
 export default App;
