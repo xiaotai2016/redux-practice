@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
-import { Input, Button, List } from 'antd';
+import { Input, Button } from 'antd';
+import Listcom from './list'
 import "antd/dist/antd.css";
 
 function App() {
@@ -26,13 +27,10 @@ function App() {
       style={{width:'300px', marginRight:'10px'}}
     />
     <Button type="primary" onClick={handListChange}>Submit now</Button>
-    <List
-      style={{width:'300px', marginTop:'10px'}}
-      size="small"
-      bordered
-      dataSource={list}
-      renderItem={(item,index)=><List.Item onClick={()=>{handDelete(index)}} >{item}</List.Item>}
-    />
+    <Listcom
+      list={list}
+      handDelete={handDelete}
+     />
     </div>
   );
 }
