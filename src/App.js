@@ -1,11 +1,14 @@
 import React, {useState} from 'react'
 import { Input, Button } from 'antd';
-import Listcom from './list'
+import Listcom from './list';
+import store from "./store"
+
 import "antd/dist/antd.css";
 
 function App() {
-  const [inputValue, setInputValue] = useState('')
-  const [list, setList] = useState([])
+  const stateDate = store.getState();
+  const [inputValue, setInputValue] = useState(stateDate.inputValue);
+  const [list, setList] = useState(stateDate.list)
   const handleInput = (e)=>{
     setInputValue (e.target.value);
   }
