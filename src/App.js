@@ -6,9 +6,8 @@ import store from "./store"
 import "antd/dist/antd.css";
 
 function App() {
-  const stateDate = store.getState();
-  const [inputValue, setInputValue] = useState(stateDate.inputValue);
-  const [list, setList] = useState(stateDate.list)
+  const [inputValue, setInputValue] = useState(store.getState().inputValue);
+  const [list, setList] = useState(store.getState().list)
   const handleInput = (e)=>{
     //setInputValue (e.target.value);
     const action={
@@ -26,6 +25,12 @@ function App() {
     newlist.splice(index,1)
     setList([...newlist])
   }
+  const handleStoreChange = ()=>{
+    console.log('changed');
+    setInputValue(store.getState().inputValue);
+    setList(store.getState().list)
+  }
+  store.subscribe(handleStoreChange)
   return (
     <div style={{marginLeft:'30px', marginTop:'30px'}}>
     <Input

@@ -4,5 +4,10 @@ const defaultState={
 };
 
 export default (state = defaultState, action)=>{
+  if (action.type==="SET_INPUT_STATE") {
+    const newState = state;
+    newState.inputValue=action.value;
+    return newState;
+  }
   return state;
 }
