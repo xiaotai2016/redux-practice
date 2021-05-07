@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState,useEffect} from 'react'
 import { Input, Button } from 'antd';
 import Listcom from './list';
 import store from "./store"
@@ -6,10 +6,12 @@ import store from "./store"
 import "antd/dist/antd.css";
 
 function App() {
+
   const [inputValue, setInputValue] = useState(store.getState().inputValue);
   const [list, setList] = useState(store.getState().list)
   const handleInput = (e)=>{
-    //setInputValue (e.target.value);
+    console.log(1);
+
     const action={
       type:"SET_INPUT_STATE",
       value:e.target.value
@@ -26,11 +28,15 @@ function App() {
     setList([...newlist])
   }
   const handleStoreChange = ()=>{
-    console.log('changed');
+    console.log(2,'changed');
     setInputValue(store.getState().inputValue);
     setList(store.getState().list)
   }
-  store.subscribe(handleStoreChange)
+
+  useEffect(() => {
+   store.subscribe(handleStoreChange);
+ }, []);
+
   return (
     <div style={{marginLeft:'30px', marginTop:'30px'}}>
     <Input
