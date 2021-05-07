@@ -10,5 +10,16 @@ export default (state = defaultState, action)=>{
     newState.inputValue=action.value;
     return newState;
   }
+  if (action.type==="UPDATE_LIST") {
+    const newState = state;
+    newState.list = [...state.list, state.inputValue];
+    newState.inputValue = '';
+    return newState;
+  }
+  if (action.type==="DELETE_ITEM") {
+    const newState = state;
+    newState.list.splice(action.index,1);
+    return newState;
+  }
   return state;
 }

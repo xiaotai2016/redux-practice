@@ -19,13 +19,22 @@ function App() {
     store.dispatch(action);
   }
   const handListChange = ()=>{
-    setList([...list,inputValue])
-    setInputValue('')
+    //setList([...list,inputValue])
+    //setInputValue('')
+    const action = {
+      type:"UPDATE_LIST"
+    }
+    store.dispatch(action)
   }
   const handDelete= (index)=>{
-    var newlist = list;
-    newlist.splice(index,1)
-    setList([...newlist])
+    // var newlist = list;
+    // newlist.splice(index,1)
+    // setList([...newlist])
+    const action = {
+      type:"DELETE_ITEM",
+      index:index
+    }
+    store.dispatch(action);
   }
   const handleStoreChange = ()=>{
     console.log(2,'changed');
