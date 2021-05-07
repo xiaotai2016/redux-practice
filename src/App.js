@@ -10,8 +10,6 @@ function App() {
   const [inputValue, setInputValue] = useState(store.getState().inputValue);
   const [list, setList] = useState(store.getState().list)
   const handleInput = (e)=>{
-    console.log(1);
-
     const action={
       type:"SET_INPUT_STATE",
       value:e.target.value
@@ -37,9 +35,8 @@ function App() {
     store.dispatch(action);
   }
   const handleStoreChange = ()=>{
-    console.log(2,'changed');
     setInputValue(store.getState().inputValue);
-    setList(store.getState().list)
+    setList([...store.getState().list])
   }
 
   useEffect(() => {
