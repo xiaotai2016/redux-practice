@@ -1,0 +1,3 @@
+export const SET_INPUT_STATE= 'SET_INPUT_STATE';
+export const UPDATE_LIST= 'UPDATE_LIST';
+export const DELETE_ITEM= 'DELETE_ITEM';

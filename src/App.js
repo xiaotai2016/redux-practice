@@ -1,7 +1,8 @@
 import React, {useState,useEffect} from 'react'
 import { Input, Button } from 'antd';
 import Listcom from './list';
-import store from "./store"
+import store from "./store";
+import {SET_INPUT_STATE, UPDATE_LIST, DELETE_ITEM} from './store/actionType';
 
 import "antd/dist/antd.css";
 
@@ -11,7 +12,7 @@ function App() {
   const [list, setList] = useState(store.getState().list)
   const handleInput = (e)=>{
     const action={
-      type:"SET_INPUT_STATE",
+      type:SET_INPUT_STATE,
       value:e.target.value
     }
     store.dispatch(action);
@@ -20,7 +21,7 @@ function App() {
     //setList([...list,inputValue])
     //setInputValue('')
     const action = {
-      type:"UPDATE_LIST"
+      type:UPDATE_LIST
     }
     store.dispatch(action)
   }
@@ -29,7 +30,7 @@ function App() {
     // newlist.splice(index,1)
     // setList([...newlist])
     const action = {
-      type:"DELETE_ITEM",
+      type:DELETE_ITEM,
       index:index
     }
     store.dispatch(action);
