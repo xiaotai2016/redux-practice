@@ -2,7 +2,7 @@ import React, {useState,useEffect} from 'react'
 import { Input, Button } from 'antd';
 import Listcom from './list';
 import store from "./store";
-import {SET_INPUT_STATE, UPDATE_LIST, DELETE_ITEM} from './store/actionType';
+import { handInputAction, handleListChangeAction, handleDeleteAction} from "./store/createAction"
 
 import "antd/dist/antd.css";
 
@@ -11,28 +11,15 @@ function App() {
   const [inputValue, setInputValue] = useState(store.getState().inputValue);
   const [list, setList] = useState(store.getState().list)
   const handleInput = (e)=>{
-    const action={
-      type:SET_INPUT_STATE,
-      value:e.target.value
-    }
+    const action= handInputAction(e.target.value)
     store.dispatch(action);
   }
   const handListChange = ()=>{
-    //setList([...list,inputValue])
-    //setInputValue('')
-    const action = {
-      type:UPDATE_LIST
-    }
+    const action = handleListChangeAction();
     store.dispatch(action)
   }
   const handDelete= (index)=>{
-    // var newlist = list;
-    // newlist.splice(index,1)
-    // setList([...newlist])
-    const action = {
-      type:DELETE_ITEM,
-      index:index
-    }
+    const action = handleDeleteAction(index)
     store.dispatch(action);
   }
   const handleStoreChange = ()=>{
