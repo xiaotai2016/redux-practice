@@ -1,6 +1,5 @@
 import React, {useState,useEffect} from 'react'
-import { Input, Button } from 'antd';
-import Listcom from './list';
+import ListUI from './AppUI';
 import store from "./store";
 import { handInputAction, handleListChangeAction, handleDeleteAction} from "./store/createAction"
 
@@ -32,19 +31,13 @@ function App() {
  }, []);
 
   return (
-    <div style={{marginLeft:'30px', marginTop:'30px'}}>
-    <Input
-      placeholder="Basic usage"
-      value={inputValue}
-      onChange= {handleInput}
-      style={{width:'300px', marginRight:'10px'}}
-    />
-    <Button type="primary" onClick={handListChange}>Submit now</Button>
-    <Listcom
+    <ListUI
+      inputValue={inputValue}
+      handleInput={handleInput}
+      handListChange={handListChange}
       list={list}
       handDelete={handDelete}
-     />
-    </div>
+    />
   );
 }
 
