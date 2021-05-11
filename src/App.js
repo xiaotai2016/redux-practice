@@ -1,7 +1,7 @@
 import React, {useState,useEffect} from 'react'
 import ListUI from './AppUI';
 import store from "./store";
-import { handInputAction, handleListChangeAction, handleDeleteAction} from "./store/createAction"
+import { handInputAction, handleListChangeAction, handleDeleteAction,ajaxGetListAction} from "./store/createAction"
 
 import "antd/dist/antd.css";
 
@@ -24,9 +24,14 @@ function App() {
     setInputValue(store.getState().inputValue);
     setList([...store.getState().list])
   }
+  const getServerList = ()=>{
+    const action= ajaxGetListAction()
+    store.dispatch(action)
+  }
 
   useEffect(() => {
    store.subscribe(handleStoreChange);
+   
  }, []);
 
   return (
