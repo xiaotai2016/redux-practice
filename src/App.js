@@ -6,7 +6,6 @@ import { handInputAction, handleListChangeAction, handleDeleteAction} from "./st
 import "antd/dist/antd.css";
 
 function App() {
-
   const [inputValue, setInputValue] = useState(store.getState().inputValue);
   const [list, setList] = useState(store.getState().list)
   const handleInput = (e)=>{

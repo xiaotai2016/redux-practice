@@ -5,7 +5,7 @@ const defaultState={
   list:[]
 };
 
-export default (state = defaultState, action)=>{
+const mainreducer  = (state = defaultState, action)=>{
   if (action.type===SET_INPUT_STATE) {
     const newState = state;
     newState.inputValue=action.value;
@@ -24,3 +24,5 @@ export default (state = defaultState, action)=>{
   }
   return state;
 }
+
+export default  mainreducer
