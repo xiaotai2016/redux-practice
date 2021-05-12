@@ -1,4 +1,4 @@
-import {SET_INPUT_STATE, UPDATE_LIST, DELETE_ITEM} from './actionType';
+import {SET_INPUT_STATE, UPDATE_LIST, DELETE_ITEM, UPDATE_AJAX_LISR} from './actionType';
 
 const defaultState={
   inputValue:'',
@@ -20,6 +20,11 @@ const mainreducer  = (state = defaultState, action)=>{
   if (action.type===DELETE_ITEM) {
     const newState = state;
     newState.list.splice(action.index,1);
+    return newState;
+  }
+  if (action.type===UPDATE_AJAX_LISR) {
+    const newState = state;
+    newState.list=action.data;
     return newState;
   }
   return state;

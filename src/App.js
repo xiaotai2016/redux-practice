@@ -24,14 +24,11 @@ function App() {
     setInputValue(store.getState().inputValue);
     setList([...store.getState().list])
   }
-  const getServerList = ()=>{
-    const action= ajaxGetListAction()
-    store.dispatch(action)
-  }
 
   useEffect(() => {
    store.subscribe(handleStoreChange);
-   
+   const action = ajaxGetListAction();
+   store.dispatch(action)
  }, []);
 
   return (
