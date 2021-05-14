@@ -1,5 +1,4 @@
-import{ SET_INPUT_STATE, UPDATE_LIST, DELETE_ITEM, UPDATE_AJAX_LISR } from "./actionType";
-import axios from "axios";
+import{ SET_INPUT_STATE, UPDATE_LIST, DELETE_ITEM, UPDATE_AJAX_LISR, GET_AJAX_LIST } from "./actionType";
 
 export const handInputAction = (value)=>({
   type:SET_INPUT_STATE,
@@ -15,17 +14,11 @@ export const handleDeleteAction = (index)=>({
   index
 })
 
-export const ajaxGetListAction = ()=>{
-  return (dispatch)=>{
-    axios
-      .get('https://resumakeback.gotogermany.in/redux')
-      .then((res)=>{
-        const ajaxList= res.data;
-        const action = {
-          type:UPDATE_AJAX_LISR,
-          data:ajaxList
-        }
-        dispatch(action)
-      })
-  }
-}
+export const ajaxGetListAction = ()=>({
+  type: GET_AJAX_LIST
+})
+
+export const showAjaxListAction = (data)=>({
+  type: UPDATE_AJAX_LISR,
+  data
+})

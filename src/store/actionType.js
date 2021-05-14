@@ -2,3 +2,4 @@ export const SET_INPUT_STATE= 'SET_INPUT_STATE';
 export const UPDATE_LIST= 'UPDATE_LIST';
 export const DELETE_ITEM= 'DELETE_ITEM';
 export const UPDATE_AJAX_LISR= 'UPDATE_AJAX_LISR';
+export const GET_AJAX_LIST= 'GET_AJAX_LIST';

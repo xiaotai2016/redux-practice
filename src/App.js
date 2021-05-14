@@ -28,7 +28,7 @@ function App() {
   useEffect(() => {
    store.subscribe(handleStoreChange);
    const action = ajaxGetListAction();
-   store.dispatch(action)
+   store.dispatch(action);
  }, []);
 
   return (
