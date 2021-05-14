@@ -4,9 +4,14 @@ import {showAjaxListAction} from './createAction';
 import axios from 'axios';
 
 function* getlist(){
-  const res =  yield axios.get('https://resumakeback.gotogermany.in/redux');
-  const action=showAjaxListAction(res.data)
-  yield put(action)
+  try {
+    const res =  yield axios.get('https://resumakeback.gotogermany.in/redux');
+    const action=showAjaxListAction(res.data)
+    yield put(action)
+  } catch (e) {
+    console.log('Can not get the list: ', e.message);
+  }
+
 }
 
 function* mySaga() {
