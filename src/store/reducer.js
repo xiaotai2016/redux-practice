@@ -7,23 +7,23 @@ const defaultState={
 
 const mainreducer  = (state = defaultState, action)=>{
   if (action.type===SET_INPUT_STATE) {
-    const newState = state;
+    const newState = JSON.parse(JSON.stringify(state))
     newState.inputValue=action.value;
     return newState;
   }
   if (action.type===UPDATE_LIST) {
-    const newState = state;
+    const newState = JSON.parse(JSON.stringify(state))
     newState.list = [...state.list, state.inputValue];
     newState.inputValue = '';
     return newState;
   }
   if (action.type===DELETE_ITEM) {
-    const newState = state;
+    const newState = JSON.parse(JSON.stringify(state))
     newState.list.splice(action.index,1);
     return newState;
   }
   if (action.type===UPDATE_AJAX_LISR) {
-    const newState = state;
+    const newState = JSON.parse(JSON.stringify(state))
     newState.list=action.data;
     return newState;
   }

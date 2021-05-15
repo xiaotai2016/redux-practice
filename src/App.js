@@ -2,33 +2,14 @@ import React, {useState,useEffect} from 'react'
 import ListUI from './AppUI';
 import store from "./store";
 import { handInputAction, handleListChangeAction, handleDeleteAction,ajaxGetListAction} from "./store/createAction"
+import {connect} from 'react-redux';
 
 import "antd/dist/antd.css";
 
-function App() {
-  const [inputValue, setInputValue] = useState(store.getState().inputValue);
-  const [list, setList] = useState(store.getState().list)
-  const handleInput = (e)=>{
-    const action= handInputAction(e.target.value)
-    store.dispatch(action);
-  }
-  const handListChange = ()=>{
-    const action = handleListChangeAction();
-    store.dispatch(action)
-  }
-  const handDelete= (index)=>{
-    const action = handleDeleteAction(index)
-    store.dispatch(action);
-  }
-  const handleStoreChange = ()=>{
-    setInputValue(store.getState().inputValue);
-    setList([...store.getState().list])
-  }
-
+function App({inputValue, handleInput, handListChange,list, handDelete, handleAjax}) {
+  
   useEffect(() => {
-   store.subscribe(handleStoreChange);
-   const action = ajaxGetListAction();
-   store.dispatch(action);
+    handleAjax()
  }, []);
 
   return (
@@ -42,4 +23,20 @@ function App() {
   );
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return{
+  inputValue:state.inputValue,
+  list:state.list
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return{
+  handleInput: (e) => dispatch(handInputAction(e.target.value)),
+  handListChange: () => dispatch(handleListChangeAction()),
+  handDelete: (index) => dispatch(handleDeleteAction(index)),
+  handleAjax: () => dispatch(ajaxGetListAction())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps) (App);
