@@ -7,10 +7,10 @@ import {connect} from 'react-redux';
 import "antd/dist/antd.css";
 
 function App({inputValue, handleInput, handListChange,list, handDelete, handleAjax}) {
-  
+
   useEffect(() => {
     handleAjax()
- }, []);
+ }, [handleAjax]);
 
   return (
     <ListUI
